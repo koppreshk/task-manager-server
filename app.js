@@ -3,12 +3,19 @@ const express = require('express');
 const tasks = require('./routes/tasks');
 require('dotenv').config();
 const notFound = require('./middleware/route-not-found');
+const cors = require("cors");
+const corsOptions = {
+    origin: '*',
+    credentials: true,            //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+}
 
 //Initialize express
 const app = express();
 
 //Middleware
 app.use(express.json());
+app.use(cors(corsOptions)) // Use this after the variable declaration
 
 app.use('/api/v1/tasks', tasks);
 app.use(notFound);
