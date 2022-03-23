@@ -1,6 +1,9 @@
 const establishDBConnection = require('./db/connect');
 const express = require('express');
 const tasks = require('./routes/tasks');
+const newIssues = require('./routes/new-issues');
+const devIssues = require('./routes/development-in-progress');
+
 require('dotenv').config();
 const notFound = require('./middleware/route-not-found');
 const cors = require("cors");
@@ -17,6 +20,9 @@ app.use(express.json());
 app.use(cors()) // Use this after the variable declaration
 
 app.use('/api/v1/tasks', tasks);
+app.use('/api/v1/newIssues', newIssues);
+app.use('/api/v1/devIssues', devIssues);
+
 app.use(notFound);
 
 const init = async () => {
