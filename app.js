@@ -3,6 +3,7 @@ const express = require('express');
 const tasks = require('./routes/tasks');
 const newIssues = require('./routes/new-issues');
 const devIssues = require('./routes/development-in-progress');
+const codeReviewIssues = require('./routes/code-review');
 
 require('dotenv').config();
 const notFound = require('./middleware/route-not-found');
@@ -22,6 +23,7 @@ app.use(cors()) // Use this after the variable declaration
 app.use('/api/v1/tasks', tasks);
 app.use('/api/v1/newIssues', newIssues);
 app.use('/api/v1/devIssues', devIssues);
+app.use('/api/v1/codeReviewIssues', codeReviewIssues);
 
 app.use(notFound);
 

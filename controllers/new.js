@@ -63,7 +63,7 @@ const deleteNewIssue = async (req, res) => {
 
 const moveNewToDev = async (req, res) => {
     try {
-        const documentInCollectionNew = await NewModel.findById(req.body.id);
+        const documentInCollectionNew = await NewModel.findById(req.body.id).select('-createdAt -updatedAt');
         documentInCollectionNew.status = 'developmentInProgress'; //Changing the status to developmentInProgress 
 
         const insertedDocumentInCollectionDev = await DevelopmentInProgress.insertMany([documentInCollectionNew])

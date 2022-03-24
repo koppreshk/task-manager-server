@@ -1,4 +1,5 @@
 const DevelopmentInProgress = require('../models/development-in-progess');
+const CodeReview = require('../models/code-review');
 
 const getAllDevIssues = async (req, res) => {
     try {
@@ -51,9 +52,24 @@ const deleteDevIssue = async (req, res) => {
     }
 }
 
+const moveDevToCodeReview = async (req, res) => {
+    try {
+        const documentInCollectionDev = await DevelopmentInProgress.findById(req.body.id).select('-createdAt -updatedAt');
+        documentInCollectionDev.status = 'codeReview'; //Changing the status to developmentInProgress 
+
+        const insertedDocumentInCollectionCodeReview = await CodeReview.insertMany([documentInCollectionDev])
+        await DevelopmentInProgress.deleteOne({ _id: documentInCollectionDev._id })
+
+        res.status(201).json({ insertedDocumentInCollectionCodeReview });
+    } catch (error) {
+        res.status(500).json({ msg: error })
+    }
+}
+
 module.exports = {
     getAllDevIssues,
     getDevIssue,
     updateDevIssue,
-    deleteDevIssue
+    deleteDevIssue,
+    moveDevToCodeReview
 }
