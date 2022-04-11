@@ -8,6 +8,7 @@ const packaging = require('./routes/packaging');
 const qaInProgress = require('./routes/qa-in-progress'); 
 const readyForRelease = require('./routes/ready-for-release'); 
 
+// Set up Global configuration access
 require('dotenv').config();
 const notFound = require('./middleware/route-not-found');
 const cors = require("cors");
