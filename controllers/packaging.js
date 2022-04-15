@@ -17,7 +17,7 @@ const getPackagingIssue = async (req, res) => {
         if (!packagingIssue) {
             return res.status(404).json({ msg: `Issue with id: ${id} was not found` })
         }
-        res.status(200).json({ packagingIssue });
+        res.status(200).json({ data: packagingIssue });
     } catch (error) {
         res.status(500).json({ msg: error });
     }
