@@ -16,7 +16,7 @@ const getReadyForReleaseIssue = async (req, res) => {
         if (!readyForReleaseIssue) {
             return res.status(404).json({ msg: `Issue with id: ${id} was not found` })
         }
-        res.status(200).json({ readyForReleaseIssue });
+        res.status(200).json({ data: readyForReleaseIssue });
     } catch (error) {
         res.status(500).json({ msg: error });
     }

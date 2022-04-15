@@ -22,11 +22,11 @@ const createNewIssue = async (req, res) => {
 const getNewIssue = async (req, res) => {
     try {
         const { id } = req.params;
-        const issue = await NewModel.findOne({ _id: id });
-        if (!issue) {
+        const newIssue = await NewModel.findOne({ _id: id });
+        if (!newIssue) {
             return res.status(404).json({ msg: `Issue with id: ${id} was not found` })
         }
-        res.status(200).json({ issue });
+        res.status(200).json({ data: newIssue });
     } catch (error) {
         res.status(500).json({ msg: error });
     }

@@ -17,7 +17,7 @@ const getDevIssue = async (req, res) => {
         if (!devIssue) {
             return res.status(404).json({ msg: `Issue with id: ${id} was not found` })
         }
-        res.status(200).json({ devIssue });
+        res.status(200).json({ data: devIssue });
     } catch (error) {
         res.status(500).json({ msg: error });
     }
