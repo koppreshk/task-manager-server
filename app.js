@@ -1,12 +1,13 @@
 const establishDBConnection = require('./db/connect');
 const express = require('express');
-const tasks = require('./routes/tasks');
 const newIssues = require('./routes/new-issues');
 const devIssues = require('./routes/development-in-progress');
 const codeReviewIssues = require('./routes/code-review');
-const packaging = require('./routes/packaging'); 
-const qaInProgress = require('./routes/qa-in-progress'); 
-const readyForRelease = require('./routes/ready-for-release'); 
+const packaging = require('./routes/packaging');
+const qaInProgress = require('./routes/qa-in-progress');
+const readyForRelease = require('./routes/ready-for-release');
+const signin = require('./routes/google-signin');
+const users = require('./routes/users');
 
 // Set up Global configuration access
 require('dotenv').config();
@@ -24,13 +25,14 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cors()) // Use this after the variable declaration
 
-app.use('/api/v1/tasks', tasks);
 app.use('/api/v1/newIssues', newIssues);
 app.use('/api/v1/devIssues', devIssues);
 app.use('/api/v1/codeReviewIssues', codeReviewIssues);
 app.use('/api/v1/packagingIssues', packaging);
 app.use('/api/v1/qaInProgressIssues', qaInProgress);
 app.use('/api/v1/readyForReleaseIssues', readyForRelease);
+app.use('/api/v1', signin);
+app.use('/api/v1', users);
 
 app.use(notFound);
 
