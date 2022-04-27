@@ -60,7 +60,7 @@ const moveCodeReviewToPackaging = async (req, res) => {
         const insertedDocumentInCollectionPackaging = await Packaging.insertMany([documentInCollectionCodeReview])
         await CodeReview.deleteOne({ _id: documentInCollectionCodeReview._id })
 
-        res.status(201).json({ insertedDocumentInCollectionPackaging });
+        res.status(201).json({ data: insertedDocumentInCollectionPackaging });
     } catch (error) {
         res.status(500).json({ msg: error })
     }

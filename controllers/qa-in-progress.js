@@ -60,7 +60,7 @@ const moveQAInProgressToReadyForRelease = async (req, res) => {
         const insertedDocumentInCollectionReadyForRelease = await ReadyForRelease.insertMany([documentInCollectionQAInProgress])
         await QAInProgress.deleteOne({ _id: documentInCollectionQAInProgress._id })
 
-        res.status(201).json({ insertedDocumentInCollectionReadyForRelease });
+        res.status(201).json({ data: insertedDocumentInCollectionReadyForRelease });
     } catch (error) {
         res.status(500).json({ msg: error })
     }

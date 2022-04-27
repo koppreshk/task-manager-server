@@ -60,7 +60,7 @@ const movePackagingToQAInProgress = async (req, res) => {
         const insertedDocumentInCollectionQAInProgress = await QAInProgress.insertMany([documentInCollectionPackaging])
         await Packaging.deleteOne({ _id: documentInCollectionPackaging._id })
 
-        res.status(201).json({ insertedDocumentInCollectionQAInProgress });
+        res.status(201).json({ data: insertedDocumentInCollectionQAInProgress });
     } catch (error) {
         res.status(500).json({ msg: error })
     }

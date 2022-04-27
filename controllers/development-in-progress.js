@@ -60,7 +60,7 @@ const moveDevToCodeReview = async (req, res) => {
         const insertedDocumentInCollectionCodeReview = await CodeReview.insertMany([documentInCollectionDev])
         await DevelopmentInProgress.deleteOne({ _id: documentInCollectionDev._id })
 
-        res.status(201).json({ insertedDocumentInCollectionCodeReview });
+        res.status(201).json({ data: insertedDocumentInCollectionCodeReview });
     } catch (error) {
         res.status(500).json({ msg: error })
     }

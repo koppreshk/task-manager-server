@@ -69,7 +69,7 @@ const moveNewToDev = async (req, res) => {
         const insertedDocumentInCollectionDev = await DevelopmentInProgress.insertMany([documentInCollectionNew])
         await NewModel.deleteOne({ _id: documentInCollectionNew._id })
 
-        res.status(201).json({ insertedDocumentInCollectionDev });
+        res.status(201).json({ data: insertedDocumentInCollectionDev });
     } catch (error) {
         res.status(500).json({ msg: error })
     }
