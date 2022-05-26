@@ -3,7 +3,7 @@ const ReadyForRelease = require('../models/ready-for-release');
 const getAllReadyForReleaseIssues = async (req, res) => {
     try {
         const allReadyForReleaseIssues = await ReadyForRelease.find({});
-        res.status(201).json({ allReadyForReleaseIssues });
+        res.status(201).json({ data: allReadyForReleaseIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }

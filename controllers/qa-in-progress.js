@@ -4,7 +4,7 @@ const ReadyForRelease = require('../models/ready-for-release');
 const getAllQAInProgressIssues = async (req, res) => {
     try {
         const allQAInProgressIssues = await QAInProgress.find({});
-        res.status(201).json({ allQAInProgressIssues });
+        res.status(201).json({ data: allQAInProgressIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }

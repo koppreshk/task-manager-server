@@ -4,7 +4,7 @@ const Packaging = require('../models/packaging');
 const getAllCodeReviewIssues = async (req, res) => {
     try {
         const allCodeReviewIssues = await CodeReview.find({});
-        res.status(201).json({ allCodeReviewIssues });
+        res.status(201).json({ data: allCodeReviewIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }

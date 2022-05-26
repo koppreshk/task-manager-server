@@ -4,7 +4,7 @@ const CodeReview = require('../models/code-review');
 const getAllDevIssues = async (req, res) => {
     try {
         const allDevIssues = await DevelopmentInProgress.find({});
-        res.status(201).json({ allDevIssues });
+        res.status(201).json({ data: allDevIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }

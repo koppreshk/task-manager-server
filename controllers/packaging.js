@@ -4,7 +4,7 @@ const QAInProgress = require('../models/qa-in-progress');
 const getAllPackagingIssues = async (req, res) => {
     try {
         const allPackagingIssues = await Packaging.find({});
-        res.status(201).json({ allPackagingIssues });
+        res.status(201).json({ data: allPackagingIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }
