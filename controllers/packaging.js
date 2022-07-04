@@ -3,7 +3,9 @@ const QAInProgress = require('../models/qa-in-progress');
 
 const getAllPackagingIssues = async (req, res) => {
     try {
-        const allPackagingIssues = await Packaging.find({});
+        const { searchByTitle } = req.query;
+
+        const allPackagingIssues = await Packaging.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });
         res.status(201).json({ data: allPackagingIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });

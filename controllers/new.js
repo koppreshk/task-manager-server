@@ -3,7 +3,9 @@ const DevelopmentInProgress = require('../models/development-in-progess');
 
 const getAllNewIssues = async (req, res) => {
     try {
-        const newIssues = await NewModel.find({});
+        const { searchByTitle } = req.query;
+
+        const newIssues = await NewModel.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });
         res.status(201).json({ data: newIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });

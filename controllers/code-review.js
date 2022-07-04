@@ -2,8 +2,10 @@ const CodeReview = require('../models/code-review');
 const Packaging = require('../models/packaging');
 
 const getAllCodeReviewIssues = async (req, res) => {
+    const { searchByTitle } = req.query;
+
     try {
-        const allCodeReviewIssues = await CodeReview.find({});
+        const allCodeReviewIssues = await CodeReview.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });;
         res.status(201).json({ data: allCodeReviewIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });

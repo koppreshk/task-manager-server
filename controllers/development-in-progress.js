@@ -3,7 +3,9 @@ const CodeReview = require('../models/code-review');
 
 const getAllDevIssues = async (req, res) => {
     try {
-        const allDevIssues = await DevelopmentInProgress.find({});
+        const { searchByTitle } = req.query;
+
+        const allDevIssues = await DevelopmentInProgress.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });
         res.status(201).json({ data: allDevIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });

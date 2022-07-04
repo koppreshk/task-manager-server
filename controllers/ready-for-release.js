@@ -2,7 +2,9 @@ const ReadyForRelease = require('../models/ready-for-release');
 
 const getAllReadyForReleaseIssues = async (req, res) => {
     try {
-        const allReadyForReleaseIssues = await ReadyForRelease.find({});
+        const { searchByTitle } = req.query;
+
+        const allReadyForReleaseIssues = await ReadyForRelease.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });
         res.status(201).json({ data: allReadyForReleaseIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });

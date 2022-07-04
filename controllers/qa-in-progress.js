@@ -3,7 +3,9 @@ const ReadyForRelease = require('../models/ready-for-release');
 
 const getAllQAInProgressIssues = async (req, res) => {
     try {
-        const allQAInProgressIssues = await QAInProgress.find({});
+        const { searchByTitle } = req.query;
+
+        const allQAInProgressIssues = await QAInProgress.find({ title: { $regex: new RegExp(searchByTitle, 'i') } });
         res.status(201).json({ data: allQAInProgressIssues });
     } catch (error) {
         res.status(500).json({ msg: error.message });
